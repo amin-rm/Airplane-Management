@@ -9,16 +9,16 @@ namespace AM.ApplicationCore.Domain
 {
     public class ReservationTicket
     {
-        public double Prix { get; set; }
         public DateTime DateReservation { get; set; }
-        public int TicketFk { get; set; }
-        public string PassengerFk { get; set; }
-
+        public virtual int TicketFk { get; set; }
+        public float Prix { get; set; }
         [ForeignKey("TicketFk")]
-        public Ticket Ticket { get; set; }
 
+       
+        public virtual string PassengerFk { get; set; }
+        public Ticket Ticket { get; set; }
         [ForeignKey("PassengerFk")]
         public Passenger Passenger { get; set; }
-
     }
 }
+

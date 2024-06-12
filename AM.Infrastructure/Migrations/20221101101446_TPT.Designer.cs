@@ -4,6 +4,7 @@ using AM.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AM.Infrastructure.Migrations
 {
     [DbContext(typeof(AMContext))]
-    partial class AMContextModelSnapshot : ModelSnapshot
+    [Migration("20221101101446_TPT")]
+    partial class TPT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,48 +104,6 @@ namespace AM.Infrastructure.Migrations
                     b.HasKey("PlaneId");
 
                     b.ToTable("MyPlanes", (string)null);
-                });
-
-            modelBuilder.Entity("AM.ApplicationCore.Domain.ReservationTicket", b =>
-                {
-                    b.Property<string>("PassengerFk")
-                        .HasColumnType("nvarchar(7)");
-
-                    b.Property<int>("TicketFk")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateReservation")
-                        .HasColumnType("date");
-
-                    b.Property<float>("Prix")
-                        .HasColumnType("real");
-
-                    b.HasKey("PassengerFk", "TicketFk", "DateReservation");
-
-                    b.HasIndex("TicketFk");
-
-                    b.ToTable("ReservationTickets");
-                });
-
-            modelBuilder.Entity("AM.ApplicationCore.Domain.Ticket", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Classe")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Destination")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("FlightPassenger", b =>
@@ -235,25 +195,6 @@ namespace AM.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AM.ApplicationCore.Domain.ReservationTicket", b =>
-                {
-                    b.HasOne("AM.ApplicationCore.Domain.Passenger", "Passenger")
-                        .WithMany("ReservationsTickets")
-                        .HasForeignKey("PassengerFk")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AM.ApplicationCore.Domain.Ticket", "Ticket")
-                        .WithMany("ReservationsTickets")
-                        .HasForeignKey("TicketFk")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Passenger");
-
-                    b.Navigation("Ticket");
-                });
-
             modelBuilder.Entity("FlightPassenger", b =>
                 {
                     b.HasOne("AM.ApplicationCore.Domain.Flight", null)
@@ -287,19 +228,9 @@ namespace AM.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AM.ApplicationCore.Domain.Passenger", b =>
-                {
-                    b.Navigation("ReservationsTickets");
-                });
-
             modelBuilder.Entity("AM.ApplicationCore.Domain.Plane", b =>
                 {
                     b.Navigation("Flights");
-                });
-
-            modelBuilder.Entity("AM.ApplicationCore.Domain.Ticket", b =>
-                {
-                    b.Navigation("ReservationsTickets");
                 });
 #pragma warning restore 612, 618
         }

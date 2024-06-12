@@ -14,15 +14,16 @@ namespace AM.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Flight> builder)
         {
 
-            // configuration de * * association
+            // configuration de * * association, renommer la table d'association
             builder.HasMany(f => f.Passengers)
             .WithMany(p => p.Flights)
-            .UsingEntity(j => j.ToTable("Reservation"));
+            .UsingEntity(j => j.ToTable("ReservationFlight"));
 
             //configuration de one to many 
             builder.HasOne(f => f.Plane)
               .WithMany(p => p.Flights)
-              .HasForeignKey(f => f.PlaneFK)
+              // 2 eme methode 
+            //  .HasForeignKey(f => f.PlaneFK)
               .OnDelete(DeleteBehavior.Cascade); //The values of foreign key properties in dependent entities are set to null when the related principal is deleted
         }
 

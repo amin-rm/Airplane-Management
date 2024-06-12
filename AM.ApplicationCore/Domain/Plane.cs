@@ -65,18 +65,6 @@ namespace AM.ApplicationCore.Domain
         #region prop de navigation
         public IList<Flight> Flights { get; set; }
 
-
         #endregion
-
-        public Plane(PlaneType planeType, DateTime manufactureDate, int capacity)
-        {
-            PlaneType = planeType;
-            ManufactureDate = manufactureDate;
-            Capacity = capacity;
-        }
-
-        public Plane()
-        {
-        }
     }
 }

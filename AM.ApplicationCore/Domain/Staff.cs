@@ -15,11 +15,5 @@ namespace AM.ApplicationCore.Domain
 
         [DataType(DataType.Currency)]
         public float Salary { get; set; }
-
-        public override void PassengerType()
-        {
-            
-            Console.WriteLine("I'm a staff");
-        }
     }
 }

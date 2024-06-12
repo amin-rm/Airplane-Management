@@ -14,19 +14,19 @@ namespace AM.Infrastructure
         private readonly DbContext _context;
         private readonly Type repositoryType;
         private bool disposedValue;
-//1
+
         public UnitOfWork(DbContext context, Type type)
         {
             _context = context;
             repositoryType = type;
         }
-//2
+
         public IGenericRepository<T> Repository<T>() where T : class
         {
             return (IGenericRepository<T>)Activator.CreateInstance(repositoryType
                         .MakeGenericType(typeof(T)), _context);
         }
-//3
+
         public int Save()
         {
             // Save changes with the default options
@@ -54,7 +54,7 @@ namespace AM.Infrastructure
         //     // Ne changez pas ce code. Placez le code de nettoyage dans la méthode 'Dispose(bool disposing)'
         //     Dispose(disposing: false);
         // }
-//4
+
         public void Dispose()
         {
             // Ne changez pas ce code. Placez le code de nettoyage dans la méthode 'Dispose(bool disposing)'

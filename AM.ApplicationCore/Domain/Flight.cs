@@ -19,13 +19,15 @@ namespace AM.ApplicationCore.Domain
         public string Departure { get; set; }
         public string Destination { get; set; }
 
+        public int PlaneFK { get; set; }
 
-     
-        public  int PlaneFK { get; set; }
-        public  IList<Passenger> Passengers { get; set; }
+
+        public virtual IList<Passenger> Passengers { get; set; }
+
         [ForeignKey("PlaneFK")]
-        public  Plane Plane { get; set; }
+        public virtual Plane Plane { get; set; }
 
-      
+
+
     }
 }

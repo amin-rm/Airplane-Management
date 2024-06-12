@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace AM.ApplicationCore.Interfaces
 {
-    public interface IServicePlane:IService<Plane>
+    public interface IServicePlane : IService<Plane>
     {
-        IEnumerable<Passenger> GetPassengersByPlane(Plane p);
+
+      
+
     }
 }

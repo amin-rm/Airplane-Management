@@ -1,4 +1,4 @@
-namespace AM.WEB.Models
+namespace AM.Web.Models
 {
     public class ErrorViewModel
     {

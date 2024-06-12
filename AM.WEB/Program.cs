@@ -7,14 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddDbContext<DbContext, AMContext>();
-builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();   
-builder.Services.AddScoped<Type>(p=> typeof(GenericRepository<>));
-
-
+builder.Services.AddScoped<Type>(p => typeof(GenericRepository<>));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IServiceFlight, ServiceFlight>();
 builder.Services.AddScoped<IServicePlane, ServicePlane>();
-// <=> IServicePlane sp= new ServicePlane();
+// <=> IServiceFlight sf = new ServiceFlight()
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
